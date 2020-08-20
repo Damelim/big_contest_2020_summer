@@ -299,6 +299,55 @@ x,y변수가 다 있는 correlation plot과 y변수에 대한 density로 bell sh
 
 
 
+AUG 19 권혁 , 조유림 학회원
+
+파생변수 추가 , X변수의 예측. (한경기로 통째로 합침)
+
+
+
+
+
+
+
+
+
+
+
+
+AUG 20~21 임선우학회원
+
+1. 한 일
+
+1-1) 여기는 예측된 X값이 없다는 점에 유의하여야 한다. 예측된 X값들은 코드 내에 있었다. 그 코드 끝에 to_csv 해서 test X 파일 2개(투 / 타)를 만들었다.
+1-2) 권혁, 조유림 학회원의 작업을 물려받아 (수정 하나도 없음) train data에서 투 / 타 각각 light GBM, XGBoost 학습.
+---> 21 새벽까지는 타자 lightGBM은 돌리지 못했다. 타자 xgboost가 무지무지 오래걸린다. 물론 parameter를 고정하면 모델 5,6개씩 학습가능한데 각각 모델에 grid search가 들어가서 무지 오래걸리게 된다. 
+어떻게 보면 grid search 안의 후보 parameter가 달라짐에 따라 모델도 달라지므로 고려한 모델은 
+lgbm : 180 (투수)
+xgboost : 108 + 108 (타자, 투수)
+
+총 396개라고 할 수도 있겠다.
+
+
+1-3) 각 모델에서의 feature importance plot 그리기 -> PPT에 넣어도 될 듯하다 (FEATURE IMPORANCE의 정의를 한 번 되새겨볼 필요는 있다)
+1-4) 만든 폴더들 (안에 투수, 타자 각각 하나씩 파일 있음)
+* modeling_code/test_data : 조유림 학회원이 가공한 private_batter, private pitcher의 (예측된) X test data를 code along -> to_csv하였다
+* modeling_code/report_data : test data와의 차이점을 두려고 하였다. test 데이터는 test X만 있는 데이터, report data는 report 라는 뜻 그 자체로 대회주최측에 보고할 예측 y까지 있는 제출파일. 
+  
+
+
+
+
+2. 고려할 점, 질문거리
+
+Q1)이닝수, 타수로 수치형데이터 (엄밀히 말하면 수치형 변수 중에서 이닝당,한 타수 당이라는 의미로 이닝수로 나눌 수 있는 것)를 나누어서 한 이닝 당 안타수, 자책점 수를 예측하고 거기에다가 이닝을 곱한 것을 예측치로 할까?
+A1) 그러기보다는 이닝, 타수 모두 설명변수로 취급하면 추가적인 아이디어를 얻을 희망도 있으며 TREE 기반 METHOD의 FEATURE IMPORTANCE를 맹신하면 안 되겠으나 이닝 수, 타석 수가 지배적인 FEATURE가 아니기도 하였다고 보임.
+
+Q2) feature importance의 엄밀한 의미에 대해 고민해보기. 인과관계? 상관관계? 상위 node를 가르는 기준? 그림 가지고 발표할 때 설명이 정확해야 함.
+
+
+모델링할 때 전제 : 안타수 (HIT), 자책점수 (ER)이 예측의 대상이다. AVG, ERA는 모델링할 때는 고려말자. 예측된 안타, 자책점과 input으로 있는 (예측된) 타수, 이닝으로 보고할때 타율 / 방어율로 하자.
+
+
 
 
 
