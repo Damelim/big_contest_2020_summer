@@ -126,13 +126,13 @@ final_x.to_csv('data/pitcher_test.csv',index=False)
 - 선수별 가장 마지막 경기의 X값을 통해 Y값을 예측한다
 
 #### ERA 예측 방식(Y: INN2 ER)
-- ERA를 예측하기 위해 필요한 변수는 INN2와 ER로 투수 데이터 프레임을 이용했다
+- ERA를 예측하기 위해 필요한 변수는 INN2와 ER로 투수 데이터 프레임을 이용했다(나머지 x변수들을 통해 INN2 ER예측)
 - LGBM Xgboost RandomForest 3가지 모델을 사용하였고, gridsearch-cv를 통해 best parameter를 찾았다
 - 그 결과 LGBM을 사용할 때 MSE값이 가장 낮게 나왔다
 - ERA를 예측하기 위해 최종적으로 LGBM을 사용하였기에,  본 글에서는 grid-search와 다른 모델 코드는 생략 (생략된 내용은 PPT에서 확인 가능)
 
 #### AVG 예측 방식(Y:HIT AB)
-- AVG를 예측하기 위해 필요한 변수는 HIT와 AB로 타자 데이터 프레임을 이용했다
+- AVG를 예측하기 위해 필요한 변수는 HIT와 AB로 타자 데이터 프레임을 이용했다(나머지 x변수들을 통해 HIT AB예측)
 - LGBM Xgboost RandomForest 3가지 모델을 사용하였고, gridsearch-cv를 통해 best parameter를 찾았다
 - 그 결과 Xgboost을 사용할 때 MSE값이 가장 낮게 나왔다
 - AVG를 예측하기 위해 최종적으로 Xgboost을 사용하였기에,  본 글에서는 grid-search와 다른 모델 코드는 생략 (생략된 내용은 PPT에서 확인 가능)
