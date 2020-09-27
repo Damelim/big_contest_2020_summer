@@ -17,14 +17,14 @@ import datetime
 ```python
 batter = pd.read_csv('data/private_batter.csv')
 batter = batter.sort_values(by=['P_ID','GDAY_DS'])
-batter['GDAY_DS'] = pd.to_datetime(batter['GDAY_DS'],format='%Y-%m-%d')
+batter['GDAY_DS'] = pd.to_datetime(batter['GDAY_DS'],format='%Y%m%d')
 ```
 
 
 ```python
 pitcher = pd.read_csv('data/private_pitcher.csv')
 pitcher = pitcher.sort_values(by=['P_ID','GDAY_DS'])
-pitcher['GDAY_DS'] = pd.to_datetime(pitcher['GDAY_DS'],format='%Y-%m-%d')
+pitcher['GDAY_DS'] = pd.to_datetime(pitcher['GDAY_DS'],format='%Y%m%d')
 ```
 
 ### 타자 데이터프레임 변형
@@ -167,8 +167,8 @@ pitcher_team = pitcher_test['T_ID']
 
 
 ```python
-pitcher_train = pitcher_train.drop(columns = ['GDAY_DS','T_ID','P_ID','BF','AB','HIT','KK','SLG'])
-pitcher_test = pitcher_test.drop(columns=['GDAY_DS','P_ID','BF','AB','HIT','KK','SLG','T_ID'])
+pitcher_train = pitcher_train.drop(columns = ['GDAY_DS','T_ID','P_ID'])
+pitcher_test = pitcher_test.drop(columns=['GDAY_DS','P_ID','T_ID'])
 ```
 
 
